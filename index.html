@@ -70,6 +70,48 @@
 <h2>Infrastructure-as-Code</h2>
 <h3>Bruk og kast</h3>
 </section>
+<section >
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="bash">az group create --location $location --name $resourceGroupName
+
+# Create an App Service plan in STANDARD tier
+# (minimum required by deployment slots).
+az appservice plan create --name $webappname \
+    --resource-group $resourceGroupName --sku S1
+
+# Create a web app.
+az webapp create --name $webappname \
+    --resource-group $resourceGroupName --plan $webappname
+
+# Create a deployment slot with the name "staging".
+az webapp deployment slot create --name $webappname \
+    --resource-group $resourceGroupName --slot staging
+
+# Deploy sample code to "staging" slot from GitHub.
+az webapp deployment source config --name $webappname \
+    --resource-group $resourceGroupName --slot staging \
+    --repo-url $gitrepo --branch master --manual-integration
+</code></pre></td></tr></table>
+</section>
 </section>
 <section >
 <section >
@@ -85,12 +127,17 @@
 <h3>DEMO</h3>
 </section>
 <section >
+<section >
 <h1>Oppsummert</h1>
 <ul>
 <li>Cloud - Spesielt PaaS og SaaS</li>
 <li>Infrastructure-as-code</li>
 <li>.NET Core og ASP.NET Core</li>
 </ul>
+</section>
+<section >
+<h2>github.com/nikolaia/miniseminar2017-dotnet</h2>
+</section>
 </section>
 
 
