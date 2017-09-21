@@ -115,12 +115,146 @@ az webapp deployment source config --name $webappname \
 </section>
 <section >
 <section >
+<h2>.NET vs Java</h2>
+<h3>Hva er greia?</h3>
+</section>
+<section >
 <h2>.NET Core</h2>
 <h3>Moderne backendstack</h3>
 </section>
 <section >
-<h2>.NET vs Java</h2>
-<h3>Hva er greia?</h3>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="bash">$ dotnet new web --output src/Web
+$ cd src/Web
+$ dotnet run
+Hosting environment: Development
+Content root path: /Users/nikolaia/Development/hobbybackend/src/Web
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+</code></pre></td></tr></table>
+</section>
+<section >
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+<span class="l">6: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip"><code lang="bash">Program.cs
+Startup.cs
+Web.csproj
+bin
+obj
+wwwroot
+</code></pre></td></tr></table>
+</section>
+<section >
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="xml"><span class="k">&lt;</span><span class="i">Project</span> <span class="o">Sdk</span><span class="k">="Microsoft.NET.Sdk.Web"</span><span class="k">&gt;</span>
+
+  <span class="k">&lt;</span><span class="i">PropertyGroup</span><span class="k">&gt;</span>
+    <span class="k">&lt;</span><span class="i">TargetFramework</span><span class="k">&gt;</span>netcoreapp2.0<span class="k">&lt;/</span><span class="i">TargetFramework</span><span class="k">&gt;</span>
+  <span class="k">&lt;/</span><span class="i">PropertyGroup</span><span class="k">&gt;</span>
+
+  <span class="k">&lt;</span><span class="i">ItemGroup</span><span class="k">&gt;</span>
+    <span class="k">&lt;</span><span class="i">Folder</span> <span class="o">Include</span><span class="k">="wwwroot\"</span> <span class="k">/&gt;</span>
+  <span class="k">&lt;/</span><span class="i">ItemGroup</span><span class="k">&gt;</span>
+
+  <span class="k">&lt;</span><span class="i">ItemGroup</span><span class="k">&gt;</span>
+    <span class="k">&lt;</span><span class="i">PackageReference</span> <span class="o">Include</span><span class="k">="Microsoft.AspNetCore.All"</span> <span class="o">Version</span><span class="k">="2.0.0"</span> <span class="k">/&gt;</span>
+  <span class="k">&lt;/</span><span class="i">ItemGroup</span><span class="k">&gt;</span>
+
+<span class="k">&lt;/</span><span class="i">Project</span><span class="k">&gt;</span>
+</code></pre></td></tr></table>
+</section>
+<section >
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp"><span class="k">public</span> <span class="k">class</span> Program
+{
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> Main(<span class="k">string</span>[] args)
+    {
+        WebHost.CreateDefaultBuilder(args)
+            .UseStartup&lt;Startup&gt;()
+            .Build()
+            .Run();
+    }
+}
+</code></pre></td></tr></table>
+</section>
+<section >
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+<span class="l">17: </span>
+<span class="l">18: </span>
+<span class="l">19: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="csharp"><span class="k">public</span> <span class="k">class</span> Startup
+{
+    <span class="k">public</span> <span class="k">void</span> ConfigureServices(IServiceCollection services)
+    {
+    }
+
+    <span class="k">public</span> <span class="k">void</span> Configure(IApplicationBuilder app, IHostingEnvironment env)
+    {
+        <span class="k">if</span> (env.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+        }
+
+        app.Run(<span class="k">async</span> (context) <span class="o">=</span><span class="o">&gt;</span>
+        {
+            await context.Response.WriteAsync(<span class="s">"Hello World!"</span>);
+        });
+    }
+}
+</code></pre></td></tr></table>
 </section>
 </section>
 <section >
@@ -136,7 +270,7 @@ az webapp deployment source config --name $webappname \
 </ul>
 </section>
 <section >
-<h2>github.com/nikolaia/miniseminar2017-dotnet</h2>
+<h2>github.com/nikolaia/hobbybackend</h2>
 </section>
 </section>
 
